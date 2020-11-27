@@ -16,7 +16,11 @@ def lambda_handler(event, context):
 
   try:
     row = '{"date":"'+ event["requestContext"]["time"] + '","ip":"' + event["headers"]["x-forwarded-for"] + '","userAgent":"' + event["headers"]["user-agent"] 
-    row = row + '","userId":"' + event["queryStringParameters"].get("userid","unknown") + '","thirdPartyId":"' + event["queryStringParameters"].get("thirdpartyname","unknown") + '"}\n'
+    row = row + '","category":"' + event["queryStringParameters"].get("category","unknown") 
+    row = row + '","subcategory":"' + event["queryStringParameters"].get("subcategory","unknown") 
+    row = row + '","email":"' + event["queryStringParameters"].get("email","unknown")
+    row = row + '","userId":"' + event["queryStringParameters"].get("userid","unknown") 
+    row = row + '","customerId":"' + event["queryStringParameters"].get("customerid","unknown") + '"}\n'
   
     kresponse = kinesis_client.put_record(DeliveryStreamName=kinesis_firehose,Record={'Data': row})
   except: #Catch all exceptions, we don't want the analytical part affects the business process so they are only printed in the logs
