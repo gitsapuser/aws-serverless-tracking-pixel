@@ -45,15 +45,17 @@ The Amazon Lambda Function code should be modified to parse the desired HTTP req
 * `date`: Time field of the HTTP request context.
 * `ip`: x-forwarded-for field of the HTTP request context, as Amazon API Gateway will place the original requester IP in this field.
 * `userAgent`: user-agent field of the HTTP request context.
+* `category`: Custom parameter expected on the query string, called 'category'.
+* `subcategory`: Custom parameter expected on the query string, called 'subcategory'.
+* `email`: Custom parameter expected on the query string, called 'email'.
 * `userId`: Custom parameter expected on the query string, called 'userid'.
-* `thirdPartyId`: Custom parameter expected on the query string, called 'thirdpartyname'.
+* `customerId`: Custom parameter expected on the query string, called 'customerid'.
 
 Once customized, you can directly begin tracking interactions from web pages or emails from an HTML IMG tag, or from any other event producer you might consider by generating HTTP-GET requests to the URL of the template output. As an example, this would be an HTTP call for the example implementation:
 
-```bash
-wget https://<your template output domain>?userid=aws_user&thirdpartyname=hightrafficwebsite.com”
 ```
-
+<img src="https://<your domain>/trackingPixelProcessing?userid=pipo&customerid=999999&email=pipo@clown.com&category=ORDER\&subcategory=SIMPLE" width="1" heigh="1" alt=""/>
+```
 ## Developing
 
 You can build with the following command:
