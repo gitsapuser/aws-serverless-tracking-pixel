@@ -24,7 +24,7 @@ def lambda_handler(event, context):
   
     kresponse = kinesis_client.put_record(DeliveryStreamName=kinesis_firehose,Record={'Data': row})
   except: #Catch all exceptions, we don't want the analytical part affects the business process so they are only printed in the logs
-    print("Unexpected error:", sys.exc_info())
+    print("Unexpected error:", sys.exc_info()) 
   
 
   response = {
